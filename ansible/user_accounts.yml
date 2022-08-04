@@ -1,0 +1,20 @@
+---
+user_accounts:
+  romain.guilmont:
+    name: Romain GUILMONT
+    mail: romain.guilmont@besedo.com
+    position: Lead DevOps Engineer
+    office: Bogota
+    login: romain.guilmont
+    passwd: t2EAq85zgggoNdsp
+    groups: ['sudo']
+    ssh_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDhskllcvat1LKGRk0vJ7aWFTPSSqgQdQjyp/FBRONyzCaqPEfqtZ2XfFi8GdZ+FDBcswO1c2Rjg+Bl7ys/c7ypWhFrk1VVYut/YBz7SRYtunOjFFQ+M0vpKlucvMV2O34svkrc3ElwrOT9NwaTtSDRntwRwdIGmKwLU1GYYEyrxyZyJPnmHOv55Dt9HEfpSEckbTaCOchW4TFmycC9mmcB8VWTQLoDmkjRdBLxU5882GNZ/V8BFSXxIH1Ks/+ET+tnH+UkdZRE4hTaR0G+fKJ+1C/HPb/E2QSAyL03WVjKT7CYs3jJL6TMx1d8Y2cQUbkljc3iDXIOM70oM6M/VFLH romain.guilmont@besedo.com"
+  evens.solignac:
+    name: Evens SOLIGNAC
+    mail: evens.solignac@besedo.com
+    position: DevOps Engineer
+    office: Bogota
+    login: evens.solignac
+    passwd: ClVJD5h6A0qPrMXq
+    groups: ['sudo']
+    ssh_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDV0RkjfsZu+GYxupMBKyAxK+vxobf93MpLtR6sYon3bt51gGrTUl9szRfT8DSVi+xqXOg/Vzov0sJsw/ctRhZfUjVVRB3yyZAr1y3tbPt4de8NsWJDDOCGXma6nT/Sqwbjd8rMDAkIqeZ0HKXyMFktduDSDYq3evVbPP9kGNWlclUdhTUCx8IZXamoGnBoHSXT6Cptxs48r6XD21lKmxYpaCXhl5EBdNY8Njn7iyOTaW/REsFU975JhBVgb6+ckCjnIdGIWAp+oq9phDEifLp0nhQKdCSc6fdSYa4KiAGfKCg0mlftHz+zA88jTcoBDNRSsZIYe1eTAsAqaXd7TWOEOH+qet+qKt9APnJR0zBgCZyZNceruuoOe0AnBfvgzAhGBKHEOe+rdWTDg3/boFmfuxwa/lKBn0mO5NP0v5xaGQtKdnMpktz+Ye5MN/wtnKDYIdM76XIewN1NIdRK1Kr3p9C8CKDm/dWhNrEBum6W/UY7Mz1DOAmFw6FlerWRonQOt1zAizxBaajS2T9g/6UlPOaS3Wv1xeiK8Wvg5O6krFFg3zJk3p6O+nuNnMNqS7JPeyoByNXK9l7xY/bEZYpSHryjFRvfy5jVcBassz6B2IpUFp3FX+ljuBG/qHoZxgd5dquqT0Iux2KurCIxgDBMF6RgZ+sZ1zG+3KvAskMsow== evens.solignac@besedo.com"
