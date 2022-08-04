@@ -1,0 +1,38 @@
+---
+- name: Create users based on users account file
+  connection: local
+  hosts: all
+  tasks:
+    - name: Modify nofile limit for root
+      community.general.pam_limits:
+        domain: root
+        limit_type: soft
+        limit_item: nofile
+          value: 65536
+      tags: limit
+
+    tag: users
+    block:
+      - name: Read yaml
+        include_vars:
+            file: vars/user_accounts.yml
+            name: yml_users
+      - name: Create user accounts and add users to groups
+        user:
+          name: "{{ item }}"
+          groups: "{{ yml_users.user_accounts[item]['groups'] }}"
+        loop: "{{ yml_users.user_accounts.keys()|list }}"
+      - name: Deploy SSH Public Key
+        authorized_key:
+          user: "{{ item }}"
+          state: present
+          key: "{{ yml_users.user_accounts[item]['ssh_keys'] }}"
+        loop: "{{ yml_users.user_accounts.keys()|list }}"
+      - name: Creating a file with content
+        copy:
+          dest: "/home/{{item}}/info"
+          content: |
+            name: "{{ user_accounts[item]['name'] }}"
+            position: "{{ user_accounts[item]['position'] }}"
+            office: "{{ user_accounts[item]['office'] }}"
+        loop: "{{ user_accounts.keys()|list }}"

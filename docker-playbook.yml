@@ -1,0 +1,38 @@
+---
+- name: Install Docker and start ansible_happy_roentgen
+  connection: local
+  hosts: all
+  tasks:
+    - name: Install system packages
+      apt:
+        name: "{item}"
+        state: latest
+        update_cache: true
+        loop: ['apt-transport-https', 'ca-certificates', 'lsb-release', 'gnupg', 'curl',  'software-properties-common']
+      tags: packages
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/debian/gpg
+        state: present
+    - name: Add Docker repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable
+    - name: Update apt and install docker-ce
+      apt:
+        update_cache: yes
+        name: docker-ce
+        state: latest
+
+    block:
+      - name: Pull default Docker image
+        docker_image:
+          name: public.ecr.aws/q0x2y8f9/nginx-demo
+          source: pull
+      - name: Run a docker container
+        docker_container:
+          name: ansible_happy_roentgen
+          image: public.ecr.aws/q0x2y8f9/nginx-demo
+          state: started
+          exposed_ports:
+            - 5000
+    tags: test-docker

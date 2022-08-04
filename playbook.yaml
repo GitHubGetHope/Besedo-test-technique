@@ -1,0 +1,50 @@
+---
+- name:
+  become: true
+  connection: local
+  hosts: all
+  tasks:
+    block:
+      - name: read yaml
+          include_vars:
+            file: vars/user_accounts.yml
+            name: yml_users
+      - name: Download file in local
+        get_url:
+          url: https://gist.githubusercontent.com/slgevens/aa9a2fc52cb5fef8b41c1b11a8b7d3e3/raw/dc1e3e288967bd4818277e4688d1daf615225337/prrtprrt.txt
+          dest: "{{ playbook_dir }}"/files/prrtprrt.txt
+      - name: copy file
+        copy:
+          src: "{{ playbook_dir }}"/files/prrtprrt.txt
+          dest: /home/"{{item }}"/prrtprrt.txt
+          owner: "{{ item.key }}"
+          group: sudo
+        with_dict: {yml_users.user_accounts}
+
+      - name : sensitive data
+        debug:
+          msg: "the encrypted passwd for {{item}} is {{yml_users.user_accounts[item]['passwd']}}"
+        loop: "{{ yml_users.user_accounts.keys()|list }}"
+        # encryption key = mfaik
+
+---
+- name: install ngnix
+  hosts: localhost
+  tasks:
+    - name: Install NGINX from source
+      include_role:
+        name: nginxinc.nginx
+      vars:
+        nginx_install_from: source
+        nginx_branch: stable
+        nginx_static_modules: [http_ssl_module]
+        nginx_install_source_build_tools: true
+        nginx_install_source_pcre: true
+        nginx_install_source_openssl: true
+        nginx_install_source_zlib: true
+    - name: Stop a container
+      docker_container:
+        name: ansible_happy_roentgen
+        state: started
+        expose:
+          - 80
