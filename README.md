@@ -8,7 +8,7 @@ There are 3 playbook files :
 ## How to use the playbooks ? 
 There is two ways to test our playbooks with `Vagrant` : We can create a vm and launch it with `Vagrant` and then play 
 ```
-ansible-playbook -i inventory playbook.yml
+ansible-playbook -i inventory.ini playbook.yml
 ``` 
 command with iventory contains ip adress of the VM, and you will need ssh certificate. 
 
