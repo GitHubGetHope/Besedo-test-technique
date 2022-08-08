@@ -1,7 +1,6 @@
 ---
 - name:
   become: true
-  connection: local
   hosts: all
   tasks:
     block:

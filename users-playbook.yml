@@ -1,14 +1,13 @@
 ---
 - name: Create users based on users account file
-  connection: local
   hosts: all
   tasks:
     - name: Modify nofile limit for root
       community.general.pam_limits:
         domain: root
-        limit_type: soft
+        limit_type: '-'
         limit_item: nofile
-          value: 65536
+        value: 65536
       tags: limit
 
     tag: users
